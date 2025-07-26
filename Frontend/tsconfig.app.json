@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json", // Inherits from your base tsconfig
+  "compilerOptions": {
+    "outDir": "./dist",        // Adjust if needed
+    "types": ["vite/client"]   // For Vite (remove if not using Vite)
+  },
+  "include": ["src/**/*"],     // Include all files in /src
+  "exclude": ["node_modules"]  // Exclude node_modules
+}

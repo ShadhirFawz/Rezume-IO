@@ -19,7 +19,7 @@ export default function MatchResults({ results }) {
   }
 
   return (
-    <div className="bg-cyan-100 w-3/4 rounded-lg shadow-lg p-8 h-auto overflow-visible z-0">
+    <div className="bg-cyan-100 w-full rounded-lg shadow-lg p-8 h-auto overflow-visible z-0">
       <h2 className="text-2xl font-bold mb-6 text-gray-800"
           style={{ fontFamily: "'Montserrat', sans-serif" }}  
       >

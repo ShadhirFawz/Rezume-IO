@@ -9,7 +9,7 @@ const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
 const ALLOWED_RESUME_TYPES = ["application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
 const ALLOWED_JD_TYPES = ["text/plain", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
 
-export default function UploadForm({ onResults }) {
+export default function UploadForm({ onResults, onInsights }) {
   const [jobDesc, setJobDesc] = useState(null);
   const [resumes, setResumes] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -84,6 +84,17 @@ export default function UploadForm({ onResults }) {
     try {
       const response = await axios.post("http://127.0.0.1:5000/match", formData);
       onResults(response.data.matches);
+
+      const analyzeFormData = new FormData();
+      resumes.forEach(file => analyzeFormData.append("resumes", file));
+      analyzeFormData.append("job_description", jobDesc);
+
+      const analyzeResponse = await axios.post(
+        "http://127.0.0.1:5000/analyze",
+        analyzeFormData
+      );
+
+      onInsights(analyzeResponse.data.results); 
     } catch (error) {
       alert("Error: " + error.message);
     } finally {
@@ -140,7 +151,7 @@ export default function UploadForm({ onResults }) {
             file:text-sm file:font-normal
             file:bg-blue-200 file:text-blue-600
             hover:file:bg-blue-100"
-          style={{ fontFamily: "'Arial', sans-serif" }}
+          style={{ fontFamily: "'Arial', sans-serif", cursor: "pointer" }}
         />
         {jobDesc && (
           <p className="mt-2 text-sm text-gray-600 font-extralight" style={{fontFamily: "'Georgia', serif"}}>
@@ -218,7 +229,7 @@ export default function UploadForm({ onResults }) {
                 return (
                   <div 
                     key={file.name} 
-                    className={`flex items-center p-3 rounded-lg ${isSelected ? 'bg-gray-50' : 'bg-gray-200 hover:bg-gray-300'}`}
+                    className={`flex items-center p-3 rounded-lg ${isSelected ? 'bg-gray-300' : 'bg-gray-200 hover:bg-gray-300'}`}
                   >
                     <div className="flex items-center w-full">
                       {/* Radio Button */}
@@ -294,7 +305,7 @@ export default function UploadForm({ onResults }) {
           transition: 'color 0.5s ease-out'
         }}
       >
-        {loading ? "Processing..." : "Match Resumes"}
+        {loading ? "Processing..." : "Match & Analyze"}
       </button>
     </form>
   );
