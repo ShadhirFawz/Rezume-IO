@@ -15,6 +15,7 @@ export default function UploadForm({ onResults, onInsights }) {
   const [loading, setLoading] = useState(false);
   const [selectedResumes, setSelectedResumes] = useState([]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [matchFinished, setMatchFinished] = useState(false);
 
   const onDrop = useCallback((acceptedFiles) => {
     const validFiles = acceptedFiles.filter(file =>
@@ -84,17 +85,28 @@ export default function UploadForm({ onResults, onInsights }) {
     try {
       const response = await axios.post("http://127.0.0.1:5000/match", formData);
       onResults(response.data.matches);
+      setMatchFinished(true);
+    } catch (error) {
+      alert("Error: " + error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-      const analyzeFormData = new FormData();
-      resumes.forEach(file => analyzeFormData.append("resumes", file));
-      analyzeFormData.append("job_description", jobDesc);
+  const handleAnalyze = async () => {
+    if (!jobDesc || resumes.length === 0) return;
 
+    const analyzeFormData = new FormData();
+    resumes.forEach(file => analyzeFormData.append("resumes", file));
+    analyzeFormData.append("job_description", jobDesc);
+
+    setLoading(true);
+    try {
       const analyzeResponse = await axios.post(
         "http://127.0.0.1:5000/analyze",
         analyzeFormData
       );
-
-      onInsights(analyzeResponse.data.results); 
+      onInsights(analyzeResponse.data.results);
     } catch (error) {
       alert("Error: " + error.message);
     } finally {
@@ -305,8 +317,20 @@ export default function UploadForm({ onResults, onInsights }) {
           transition: 'color 0.5s ease-out'
         }}
       >
-        {loading ? "Processing..." : "Match & Analyze"}
+        {loading ? "Processing..." : "Match"}
       </button>
+
+      {matchFinished && (
+        <button
+          type="button"
+          onClick={handleAnalyze}
+          disabled={loading}
+          className="mt-3 w-auto flex items-center py-1 px-2 bg-green-400 text-white font-medium rounded-md hover:bg-green-500"
+          style={{ fontFamily: "'Gill Sans', sans-serif" }}
+        >
+          {loading ? "Analyzing..." : "Analyze Resume"}
+        </button>
+      )}
     </form>
   );
 }

@@ -11,32 +11,32 @@ export default function ResumeMatcherPage() {
   return (
     <div className="fixed inset-0 overflow-hidden">
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 bg-gradient-to-br from-gray-700 via-gray-200 to-gray-700"
         style={{
-          background: `radial-gradient(circle,rgba(199, 192, 157, 1) 60%, rgba(194, 194, 128, 1) 60%, rgba(161, 175, 179, 1) 100%)`,
           backdropFilter: 'blur(1px)'
         }}
       />
 
       {/* Main container with grid layout */}
-      <div className="relative h-full w-full overflow-y-auto p-8">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-8"
-        >
-          <h1 
-            className="text-4xl sm:text-5xl font-bold text-shadow-gray-500 text-center"
-            style={{ fontFamily: "'Times New Roman', Times, serif" }}
-          >
-            Resume Matcher AI
-          </h1>
-        </motion.div>
-
+      <div className="relative h-full w-full overflow-y-auto p-2">
+        <nav className="fixed top-0 left-0 right-0 w-full flex justify-between items-center bg-opacity-5 text-gray-800 backdrop-blur-xs dark:text-gray-200 z-150">
+          <div className="relative flex items-center">
+            <div className="relative overflow-hidden">
+              <motion.h1 
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="p-6 mb-3 flex items-baseline justify-start relative"
+                style={{fontSize: 25, fontFamily: "'Times New Roman', serif"}}
+              >
+                RezumeIO
+                <span className="relative top-0 right-0 transform translate-x-1 -translate-y-3.5 w-2 h-2 bg-red-500 rounded-full"></span>
+              </motion.h1>
+            </div>
+          </div>
+        </nav>
         {/* Dynamic grid container */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[minmax(200px,auto)]">
+        <div className="grid grid-cols-1 p-20 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[minmax(200px,auto)]">
           {/* UploadForm (fixed at top-left) */}
           <div className="md:col-span-1 lg:row-span-1">
             <UploadForm onResults={setResults} onInsights={setInsights} />

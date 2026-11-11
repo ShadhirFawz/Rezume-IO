@@ -1,0 +1,64 @@
+Job Title: MERN Stack Software Engineer
+Location: [Remote/On-site/Hybrid]
+Job Type: [Full-time/Contract]
+
+About the Role:
+We are looking for a skilled MERN Stack Developer to join our dynamic engineering team. You will be responsible for designing, developing, and maintaining scalable web applications using MongoDB, Express.js, React.js, and Node.js. The ideal candidate has a strong grasp of modern JavaScript frameworks, RESTful APIs, and database architecture, along with a passion for writing clean, efficient code.
+
+Key Responsibilities:
+Develop and maintain full-stack web applications using the MERN stack.
+
+Design and implement RESTful APIs with Node.js & Express.js.
+
+Build responsive and interactive front-end interfaces using React.js.
+
+Work with MongoDB (or other NoSQL databases) for efficient data storage and retrieval.
+
+Optimize applications for performance, scalability, and security.
+
+Collaborate with cross-functional teams (UI/UX designers, product managers, QA) to deliver high-quality software.
+
+Debug, troubleshoot, and resolve technical issues across the stack.
+
+Write clean, maintainable, and well-documented code following best practices.
+
+Stay updated with emerging technologies and industry trends.
+
+Required Skills & Qualifications:
+3+ years of professional experience in MERN stack development.
+
+Strong proficiency in JavaScript/TypeScript, React.js, Node.js, and Express.js.
+
+Hands-on experience with MongoDB (or similar NoSQL databases).
+
+Familiarity with state management (Redux, Context API, Zustand).
+
+Experience with RESTful APIs, GraphQL, and microservices architecture.
+
+Knowledge of authentication & authorization (JWT, OAuth).
+
+Understanding of front-end build tools (Webpack, Babel, Vite).
+
+Experience with version control (Git, GitHub/GitLab).
+
+Familiarity with cloud platforms (AWS, Azure, GCP) is a plus.
+
+Strong problem-solving skills and attention to detail.
+
+Nice-to-Have Skills:
+Experience with Next.js or other SSR frameworks.
+
+Knowledge of Docker, Kubernetes, or CI/CD pipelines.
+
+Familiarity with testing frameworks (Jest, Cypress, Mocha).
+
+Understanding of Agile/Scrum methodologies.
+
+Why Join Us?
+Opportunity to work on cutting-edge projects with a talented team.
+
+Flexible work environment (remote/hybrid options).
+
+Competitive salary & benefits package.
+
+Continuous learning & career growth opportunities.
